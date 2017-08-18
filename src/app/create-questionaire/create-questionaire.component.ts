@@ -33,9 +33,9 @@ export class CreateQuestionaireComponent implements OnInit {
   ngOnInit() {
     this.formInit();
   }
-  addType(type) { // 添加题目
+  addSubject(type) { // 添加题目
     const subject = this.formModel.get('subject') as FormArray;
-    if (!this.formModel.valid) {
+    if (!this.formModel.valid && subject.length !== 0) {
       this.msgs.push({severity: 'warn', detail: '还有未填项'});
       setTimeout(function(){
         this.msgs = [];
@@ -93,7 +93,7 @@ export class CreateQuestionaireComponent implements OnInit {
           title: ['', [Validators.required ]],
           askType: ['checkbox', [Validators.required ]],
           description: ['', [Validators.required]],
-          isRequire: ['0', []],
+          isRequire: [0, []],
           values: ['', []],
           optionList: this.fb.array([
             this.fb.group({
@@ -108,5 +108,8 @@ export class CreateQuestionaireComponent implements OnInit {
   preQues() {
     sessionStorage.setItem('questionaire', JSON.stringify(this.formModel.value));
     this.router.navigate(['../preQuestionaire']);
+  }
+  delSubject(i) {
+    (this.formModel.get('subject') as FormArray).removeAt(i);
   }
 }

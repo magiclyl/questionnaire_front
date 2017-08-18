@@ -1,6 +1,6 @@
 <div class="ui-g">
   <div class="ui-g-12 ui-md-3 ui-lg-2">
-    <p-listbox [options]="ques_type" [(ngModel)]="askTyle" (click)="addType(askTyle)"></p-listbox>
+    <p-listbox [options]="ques_type" [(ngModel)]="askTyle" (click)="addSubject(askTyle)"></p-listbox>
   </div>
   <div class="ui-g-12 ui-md-9 ui-lg-10 ask_form">
     <button pButton type="button" (click)="submit()" label="投放问卷"></button>
@@ -10,6 +10,7 @@
       <textarea pInputTextarea autoResize="autoResize" formControlName="description"></textarea><br><br>
       <div formArrayName="subject">
         <div *ngFor="let dd of formModel.get('subject').controls;let i=index" class="subject">
+          <div class="cross" (click)="delSubject(i)">&times;</div>
           <div [formGroupName]="i">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon">题目:</span>
@@ -27,7 +28,6 @@
               </div>
               <div class="newOption" (click)="addOption(i,dd)">+新建选项</div>
             </div>
-            <hr>
           </div>
         </div>
       </div>
