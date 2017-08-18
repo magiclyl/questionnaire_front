@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class CreateQuestionaireComponent implements OnInit {
   items: MenuItem[];
   ques_type: SelectItem[];
+  inputType: SelectItem[];
   askTyle: string;
   formModel: FormGroup;
   checkbox: FormGroup;
@@ -28,6 +29,14 @@ export class CreateQuestionaireComponent implements OnInit {
     this.ques_type.push({label: '多选题', value: 'checkbox'});
     this.ques_type.push({label: '单行文本', value: 'singleLine'});
     this.ques_type.push({label: '多行文本', value: 'mutiLine'});
+    this.inputType = [];
+    this.inputType.push({label: '不限', value: 'none'});
+    this.inputType.push({label: '数字', value: 'number'});
+    this.inputType.push({label: '日期', value: 'date'});
+    this.inputType.push({label: '电子邮箱', value: 'email'});
+    this.inputType.push({label: 'QQ', value: 'qq'});
+    this.inputType.push({label: '身份证号', value: 'ID'});
+    this.inputType.push({label: '电话号码', value: 'phone'});
   }
 
   ngOnInit() {
@@ -44,8 +53,7 @@ export class CreateQuestionaireComponent implements OnInit {
     }
     if (type)  {
       this.type = type;
-      subject.push(
-        this.fb.group({
+      subject.push(this.fb.group({
           title: ['', [Validators.required ]],
           description: ['', [Validators.required]],
           askType: [type, [Validators.required ]],
@@ -55,8 +63,9 @@ export class CreateQuestionaireComponent implements OnInit {
         })
       );
     }
-    console.log(this.formModel.value);
-    console.log(this.formModel.get('subject'));
+  }
+  delSubject(i) { // 添加题目
+    (this.formModel.get('subject') as FormArray).removeAt(i);
   }
   addOption(n, dd) { // 添加选项
     const optionList = dd.get('optionList') as FormArray;
@@ -71,6 +80,13 @@ export class CreateQuestionaireComponent implements OnInit {
   }
   submit() { // 投放问卷
     console.log(this.formModel.value)
+    if (!this.formModel.valid) {
+      this.msgs.push({severity: 'warn', detail: '还有未填项'});
+      setTimeout(function(){
+        this.msgs = [];
+      }, 1000);
+      return;
+    }
       const that = this;
       this.http.post('http://127.0.0.1:3000/addQuestionaire', this.formModel.value)
         .map(data => data.json())
@@ -94,6 +110,7 @@ export class CreateQuestionaireComponent implements OnInit {
           askType: ['checkbox', [Validators.required ]],
           description: ['', [Validators.required]],
           isRequire: [0, []],
+          inputType: ['text', []],
           values: ['', []],
           optionList: this.fb.array([
             this.fb.group({
@@ -106,10 +123,14 @@ export class CreateQuestionaireComponent implements OnInit {
     });
   }
   preQues() {
+    if (!this.formModel.valid) {
+      this.msgs.push({severity: 'warn', detail: '还有未填项'});
+      setTimeout(function(){
+        this.msgs = [];
+      }, 1000);
+      return;
+    }
     sessionStorage.setItem('questionaire', JSON.stringify(this.formModel.value));
     this.router.navigate(['../preQuestionaire']);
-  }
-  delSubject(i) {
-    (this.formModel.get('subject') as FormArray).removeAt(i);
   }
 }

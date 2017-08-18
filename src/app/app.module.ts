@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MenuItem, ButtonModule, SlideMenuModule, ListboxModule, ChartModule,BreadcrumbModule,  DataGridModule, InputTextareaModule, InputTextModule, CheckboxModule, GrowlModule} from 'primeng/primeng';
+import {MenuItem, ButtonModule, SlideMenuModule, ListboxModule,
+ChartModule, BreadcrumbModule, DataGridModule, InputTextareaModule,
+InputTextModule, CheckboxModule, GrowlModule, DropdownModule} from 'primeng/primeng';
 import {RouterModule} from '@angular/router';
 import {appRouter} from './app.router';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +40,7 @@ import { PreQuestionaireComponent } from './pre-questionaire/pre-questionaire.co
     CheckboxModule,
     DataGridModule,
     GrowlModule,
+    DropdownModule,
     BreadcrumbModule,
     RouterModule.forRoot(appRouter)
   ],

@@ -21,6 +21,7 @@
               <input type="text" [formControl]="dd.controls.description" pInputText />
             </div>
             <p-checkbox name="isRequire" [formControl]="dd.controls.isRequire" value="1"></p-checkbox>必填<br><br>
+            <p-dropdown [options]="inputType" [formControl]="dd.controls.inputType"></p-dropdown>
             <div formArrayName="optionList">
               <div *ngFor="let sbj of dd.get('optionList').controls;let j=index" class="option_list">
                 <input type="text" pInputText [formControl]="sbj.controls.name" class="option_item">
