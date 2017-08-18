@@ -1,0 +1,9 @@
+<p-dataGrid [value]="quesList">
+  <p-header>List of questionaire</p-header>
+  <p-footer>Choose from the list.</p-footer>
+  <ng-template let-ask let-i="index" pTemplate="item">
+    <div class="ui-g-12 ui-md-3 ques_item" (click)="showGraph(i)">
+      {{ask.title}}
+    </div>
+  </ng-template>
+</p-dataGrid>

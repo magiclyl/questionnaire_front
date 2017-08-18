@@ -1,0 +1,5 @@
+.ques_item{
+  cursor: pointer;
+  border:1px solid #eee;
+  text-align: center;
+}

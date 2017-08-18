@@ -1,0 +1,52 @@
+form *{
+  width:100%;
+  margin-bottom:10px;
+}
+input{
+  line-height: 1.8em;
+}
+form{
+  padding:10px 15px;
+}
+.ui-inputgroup-addon{
+  max-width:100px;
+}
+.newOption{
+  display: inline-block;
+  zoom: 1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px dashed #e0e0e0;
+  padding: 6px 10px;
+  background: #fafafa;
+  color: #b2b2b2;
+  cursor: pointer;
+}
+.ask_form{
+  margin-left:-40px;
+}
+.option_item{
+  position: relative;
+  overflow: hidden;
+  zoom: 1;
+  list-style-type: none;
+  margin: 3px 0 3px -3px;
+  font-size: 14px;
+  line-height: 1.8em;
+  width:50%!important;
+}
+.option_list span{
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+ .subject:before{
+  background: #fafafa;
+  content: 'x';
+  width:40px;
+  height:40px;
+  color:#000;
+   font-size: 1.5rem;
+   cursor: pointer;
+}

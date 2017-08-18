@@ -1,0 +1,10 @@
+<p-breadcrumb [model]="items"></p-breadcrumb>
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-3 ui-lg-2">
+    <p-listbox [options]="ques_type"  (click)="addType(askTyle)"></p-listbox>
+  </div>
+  <div class="ui-g-12 ui-md-9 ui-lg-10 statistics">
+    <p-chart type="bar" [data]="data"></p-chart>
+    <button type="button" pButton (click)="update($event)"></button>
+  </div>
+</div>

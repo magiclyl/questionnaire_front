@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+*{
+  margin:0;
+  padding:0;
+  list-style: none;
+  text-decoration: none;
+  font-size:14px;
+}
+html,body{
+  min-height:100%;
+  width:100%;
+}
+.ui-slidemenu-wrapper{
+  height:100%;
+}
+.content{
+  position: relative;
+}
+.sidenav{
+  padding:10px 10px;
+  width:14%;
+  min-height:600px;
+  background: #eee;
+}
+.sidenav li{
+  padding:10px 5px;
+  background: #FFF;
+  border:1px solid #fafafa;
+  margin:2px 0;
+}
+.sidenav li:hover{
+  cursor: pointer;
+  background:#eee;
+}

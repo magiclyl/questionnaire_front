@@ -1,0 +1,38 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-3 ui-lg-2">
+    <p-listbox [options]="ques_type" [(ngModel)]="askTyle" (click)="addType(askTyle)"></p-listbox>
+  </div>
+  <div class="ui-g-12 ui-md-9 ui-lg-10 ask_form">
+    <button pButton type="button" (click)="submit()" label="投放问卷"></button>
+    <button pButton type="button" (click)="preQues()" label="预览回答问卷"></button>
+    <form action="" [formGroup]="formModel">
+      <input type="text" pInputText placeholder="问卷标题" style="text-align: center;" formControlName="title"/><br><br>
+      <textarea pInputTextarea autoResize="autoResize" formControlName="description"></textarea><br><br>
+      <div formArrayName="subject">
+        <div *ngFor="let dd of formModel.get('subject').controls;let i=index" class="subject">
+          <div [formGroupName]="i">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">题目:</span>
+              <input type="text" [formControl]="dd.controls.title" pInputText />
+            </div>
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">备注:</span>
+              <input type="text" [formControl]="dd.controls.description" pInputText />
+            </div>
+            <p-checkbox name="isRequire" [formControl]="dd.controls.isRequire" value="1"></p-checkbox>必填<br><br>
+            <div formArrayName="optionList">
+              <div *ngFor="let sbj of dd.get('optionList').controls;let j=index" class="option_list">
+                <input type="text" pInputText [formControl]="sbj.controls.name" class="option_item">
+                <span (click)="delOption(dd,i)">&times;</span>
+              </div>
+              <div class="newOption" (click)="addOption(i,dd)">+新建选项</div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<p-growl [(value)]="msgs"></p-growl>
+
